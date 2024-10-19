@@ -8,10 +8,14 @@ Xbar (formerly known as BitBar) is a powerful tool that lets you create custom m
 
 ## Getting Started
 
-1. Install Xbar: If you haven’t already, download and install [Xbar](https://xbarapp.com)
+1. Install one of the following:
+   - Xbar: If you haven’t already, download and install [Xbar](https://github.com/matryer/xbar)
+   - Or, [SwiftBar](https://github.com/swiftbar/SwiftBar), which is a fork of Xbar.
 2. Clone the repository: Use ⁠git clone to copy this repository to your local machine.
-3. Explore the files: Browse through the plugins and scripts to find ones you like. 4. Run the scripts: Open the Xbar application and drag and drop the scripts into the Xbar window. 5.
+3. Explore the files: Browse through the plugins and scripts to find ones you like.
 4. Customize: Modify the scripts or plugins to suit your needs.
+5. Run Xbar / SwiftBar: Then select the folder where you cloned the repository to load the plugins.
+6. Enjoy: Your menu bar is now more powerful and useful!
 
 ## Contributing
 
