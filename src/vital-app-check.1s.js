@@ -13,7 +13,6 @@ module.exports.lights = {
 };
 
 module.exports.required = [
-  "Box UI", // Cloud storage
   "Dropover", // Dropzone
   "Google Drive", // Cloud storage
   "Ice", // Menubar organizer
