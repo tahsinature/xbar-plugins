@@ -1,9 +1,24 @@
 #!/usr/bin/env /opt/homebrew/bin/node
 
+// <xbar.title>Vital App Checker</xbar.title>;
+// <xbar.author>Tahsin</xbar.author>
+// <xbar.author.github>tahsinature</xbar.author.github>
+// <xbar.desc>Checks if all the required apps running.</xbar.desc>
+// <xbar.dependencies>node</xbar.dependencies>
+
 const { execSync } = require("child_process");
 
-const result = execSync(`ps -c -o comm -p $(pgrep -u $USER -d, -f /Applications) | grep -Ev 'Helper|handler'`).toString().split("\n");
-const required = [
+module.exports.getRunningApps = () => {
+  return execSync(`ps -c -o comm -p $(pgrep -u $USER -d, -f /Applications) | grep -Ev 'Helper|handler'`).toString().split("\n").filter(Boolean);
+};
+
+module.exports.lights = {
+  green: "🟢",
+  grey: "⚪",
+  red: "🔴",
+};
+
+module.exports.required = [
   "Box UI", // Cloud storage
   "Dropover", // Dropzone
   "Google Drive", // Cloud storage
@@ -19,14 +34,20 @@ const required = [
   "Unclutter", // Dropzone
 ];
 
-const missing = required.map((r) => (result.find((a) => a.toLowerCase().includes(r.toLowerCase())) ? null : r)).filter(Boolean);
+module.exports.exec = () => {
+  const result = this.getRunningApps();
 
-// if (!missing.length) return console.log("●");
-const circleVariations = ["🟢", "⚪", "🔴"];
-if (!missing.length) return console.log(circleVariations[1]);
+  const missing = this.required.map((r) => (result.find((a) => a.toLowerCase().includes(r.toLowerCase())) ? null : r)).filter(Boolean);
 
-console.log(`${missing.length} ${circleVariations[2]}`);
-console.log("---");
-for (const m of missing) {
-  console.log(m);
-}
+  // if (!missing.length) return console.log("●");
+  const circleVariations = ["🟢", "⚪", "🔴"];
+  if (!missing.length) return console.log(this.lights.grey);
+
+  console.log(`${missing.length} ${this.lights.red}`);
+  console.log("---");
+  for (const m of missing) {
+    console.log(m);
+  }
+};
+
+if (require.main === module) this.exec();

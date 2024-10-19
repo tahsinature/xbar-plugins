@@ -2,9 +2,10 @@
 
 const moment = require("moment");
 
+const dateToday = moment().format("DD-MM-YYYY");
+const location = "London, ON";
+
 const exec = async () => {
-  const dateToday = moment().format("DD-MM-YYYY");
-  const location = "London, ON";
   const resp = await new fetch(`https://api.aladhan.com/v1/timingsByAddress/${dateToday}?address=${location}`);
   const respJSON = await resp.json();
   const { timings, meta, date } = respJSON.data;
@@ -45,15 +46,9 @@ const exec = async () => {
 
   console.log("---");
 
-  // Firstthird - Midnight - Lastthird
-  const firstThird = moment(timings["Midnight"], "HH:mm").format("hh:mm a");
+  const firstThird = moment(timings["Firstthird"], "HH:mm").format("hh:mm a");
   const midnight = moment(timings["Midnight"], "HH:mm").format("hh:mm a");
   const lastThird = moment(timings["Lastthird"], "HH:mm").format("hh:mm a");
-
-  // •	🌑  New Moon:  Signifies a fresh start or a period of introspection.
-  // •	  Waxing Crescent Moon:  Represents growth and potential.
-  // •	  Full Moon:  Symbolizes completion, illumination, and emotional intensity.
-  // •	🌘  Waning Gibbous Moon:  Indicates a time of release and letting go.
 
   console.log(`🌘 First Third: ${firstThird}`);
   console.log(`🌕 Midnight: ${midnight}`);
