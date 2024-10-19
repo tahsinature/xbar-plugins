@@ -38,9 +38,6 @@ module.exports.exec = () => {
   const result = this.getRunningApps();
 
   const missing = this.required.map((r) => (result.find((a) => a.toLowerCase().includes(r.toLowerCase())) ? null : r)).filter(Boolean);
-
-  // if (!missing.length) return console.log("●");
-  const circleVariations = ["🟢", "⚪", "🔴"];
   if (!missing.length) return console.log(this.lights.grey);
 
   console.log(`${missing.length} ${this.lights.red}`);
