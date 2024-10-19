@@ -1,11 +1,5 @@
 #!/usr/bin/env /opt/homebrew/bin/node
 
-// <xbar.title>Vital App Checker</xbar.title>;
-// <xbar.author>Tahsin</xbar.author>
-// <xbar.author.github>tahsinature</xbar.author.github>
-// <xbar.desc>Checks if all the required apps running.</xbar.desc>
-// <xbar.dependencies>node</xbar.dependencies>
-
 const { execSync } = require("child_process");
 
 module.exports.getRunningApps = () => {

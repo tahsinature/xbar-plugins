@@ -5,13 +5,18 @@ const moment = require("moment");
 const dateToday = moment().format("DD-MM-YYYY");
 const location = "London, ON";
 
-const exec = async () => {
+module.exports.fetchData = async (dateToday, location) => {
   const resp = await new fetch(`https://api.aladhan.com/v1/timingsByAddress/${dateToday}?address=${location}`);
   const respJSON = await resp.json();
   const { timings, meta, date } = respJSON.data;
 
-  const prayers = ["Fajr", "Dhuhr", "Asr", "Maghrib", "Isha"];
+  return { timings, meta, date };
+};
 
+const exec = async () => {
+  const { timings, meta, date } = await this.fetchData(dateToday, location);
+
+  const prayers = ["Fajr", "Dhuhr", "Asr", "Maghrib", "Isha"];
   const timeNow = moment();
   const nextPrayer = prayers.find((p) => moment(timings[p], "HH:mm").isAfter(timeNow));
   const currentPrayer = prayers[prayers.indexOf(nextPrayer) ? prayers.indexOf(nextPrayer) - 1 : prayers.length - 1];
@@ -45,7 +50,6 @@ const exec = async () => {
   }
 
   console.log("---");
-
   const firstThird = moment(timings["Firstthird"], "HH:mm").format("hh:mm a");
   const midnight = moment(timings["Midnight"], "HH:mm").format("hh:mm a");
   const lastThird = moment(timings["Lastthird"], "HH:mm").format("hh:mm a");
@@ -59,4 +63,4 @@ function isMoreThanHalf(timeInBetween, elappsedTime) {
   return elappsedTime > timeInBetween / 2;
 }
 
-exec();
+if (require.main === module) exec();
