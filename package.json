@@ -1,0 +1,14 @@
+{
+  "name": "xbar-plugins",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Tahsin (https://tahsin.us)",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "moment": "^2.30.1"
+  }
+}
