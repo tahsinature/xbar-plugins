@@ -42,10 +42,7 @@ const exec = async () => {
   const firstThird = moment(timings["Firstthird"], "HH:mm").format("hh:mm a");
   const midnight = moment(timings["Midnight"], "HH:mm").format("hh:mm a");
   const lastThird = moment(timings["Lastthird"], "HH:mm").format("hh:mm a");
-
-  console.log(`🌘 First Third: ${firstThird}`);
-  console.log(`🌕 Midnight: ${midnight}`);
-  console.log(`🌒 Last Third: ${lastThird}`);
+  console.log(`🌘 ${firstThird} 🌕 ${midnight} 🌒 ${lastThird}`);
 };
 
 function isMoreThanHalf(timeInBetween, elappsedTime) {
