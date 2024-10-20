@@ -4,12 +4,11 @@ const moment = require("moment");
 
 const dateToday = moment().format("DD-MM-YYYY");
 const location = "London, ON";
-const prayers = ["Fajr", "Dhuhr", "Asr", "Maghrib", "Isha"];
 
 module.exports.constants = {
   dateToday,
   location,
-  prayers,
+  prayers: ["Fajr", "Dhuhr", "Asr", "Maghrib", "Isha"],
   timeNow: moment(),
 };
 
@@ -36,7 +35,7 @@ const exec = async () => {
   console.log("---");
   for (const [key, value] of Object.entries(timings)) {
     const readableTime = moment(value, "HH:mm").format("hh:mm a");
-    if (prayers.includes(key)) console.log(`${key}: ${readableTime}`);
+    if (this.constants.prayers.includes(key)) console.log(`${key}: ${readableTime}`);
   }
 
   console.log("---");
@@ -54,6 +53,7 @@ function isMoreThanHalf(timeInBetween, elappsedTime) {
 }
 
 module.exports.formatPrayerDisplay = (timings) => {
+  const { prayers } = this.constants;
   const nextPrayer = prayers.find((p) => moment(timings[p], "HH:mm").isAfter(this.constants.timeNow)) || prayers[0];
   const currentPrayer = prayers[prayers.indexOf(nextPrayer) ? prayers.indexOf(nextPrayer) - 1 : prayers.length - 1];
 
