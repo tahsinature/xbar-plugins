@@ -27,9 +27,11 @@ const exec = async () => {
   console.log(`🕌 ${display}`);
 
   console.log("---");
+  const gregorianDate = `${date.gregorian.weekday.en}, ${date.gregorian.day} ${date.gregorian.month.en} ${date.gregorian.year}`;
   const arabicDate = `${date.hijri.weekday.en}, ${date.hijri.day} ${date.hijri.month.en} (${date.hijri.month.number}) ${date.hijri.year}`;
   console.log(`📍 ${location} - ${meta.timezone}`);
   console.log(`🕌 ${meta.method.name}`);
+  console.log(`🗓️ ${gregorianDate}`);
   console.log(`🗓️ ${arabicDate}`);
 
   console.log("---");
