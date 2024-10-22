@@ -8,13 +8,13 @@ const timings = {
 
 test("it should properly display last & first prayer of the day ", () => {
   constants.prayers = ["A", "B"];
-  constants.timeNow = moment().set({ hour: 19 });
+  constants.timeNow = moment().set({ hour: 19, minute: 30 });
 
   expect(formatPrayerDisplay(timings)).toBe("B in an hour");
 
   constants.timeNow = moment().set({ hour: 23 });
   expect(formatPrayerDisplay(timings)).toBe("B");
 
-  constants.timeNow = moment().set({ hour: 4 }).add(1, "d");
+  constants.timeNow = moment().set({ hour: 4, minute: 30 }).add(1, "d");
   expect(formatPrayerDisplay(timings)).toBe("A in 2 hours");
 });
